@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>Document</title>
+    <link rel="stylesheet" href="css//bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link href="css/styles.css" rel="stylesheet">
+    <script src="js/vue.js"></script>
+  </head>
+  <style>
+   .content{
+     height: 300px;
+     overflow: auto;
+   }
+  </style>
+  <body>
+    <div class="wrapper">
+      <div class="sample">
+	<form action="" @submit.prevent="formSubmit = true" v-if="!formSubmit">
+	  <div class="content alert alert-info" @scroll="onScroll">
+	    <p>This text no one reads. This text no one reads. This text no one reads.</p>
+	    <p>This text no one reads. This text no one reads. This text no one reads.</p>
+	    <p>This text no one reads. This text no one reads. This text no one reads.</p>
+	    <p>This text no one reads. This text no one reads. This text no one reads.</p>
+	    <p>This text no one reads. This text no one reads. This text no one reads.</p>
+	    <p>This text no one reads. This text no one reads. This text no one reads.</p>
+	    <p>This text no one reads. This text no one reads. This text no one reads.</p>
+	    <p>This text no one reads. This text no one reads. This text no one reads.</p>
+	    <p>This text no one reads. This text no one reads. This text no one reads.</p>
+	    <p>This text no one reads. This text no one reads. This text no one reads.</p>
+	    <p>This text no one reads. This text no one reads. This text no one reads.</p>
+	    <p>This text no one reads. This text no one reads. This text no one reads.</p>
+	    <p>This text no one reads. This text no one reads. This text no one reads.</p>
+	    <p>This text no one reads. This text no one reads. This text no one reads.</p>
+	  </div>
+	  <div v-if="scrolled">
+	    <div>
+	      <label for="">agree</label>
+	      <input name="" type="checkbox" v-model="agree" />  
+	    </div>
+	    <div>
+	      <label for="">spam</label>
+	      <input name="" type="checkbox" v-model="spam"/>  
+	    </div>
+	  </div>
+	  <div v-if="spam">
+	    <div>
+	      <label for="">phone</label>
+	      <input type="radio" value="phone" v-model="send" />
+	    </div>
+	    <div>
+	      <label for="">email</label>
+	      <input type="radio" value="email" v-model="send"/>
+	    </div>
+	    
+	  </div>
+	  <button v-show="agree">Send</button>
+	</form>
+
+	<div v-else>
+	  <table class="table">
+	    <tr>
+	      <td>spam</td>
+	      <td>{{spam}}</td>
+	    </tr>
+	    <tr>
+	      <td>agree</td>
+	      <td>{{agree}}</td>
+	    </tr>
+	    <tr>
+	      <td>send</td>
+	      <td>{{send}}</td>
+	    </tr>
+	  </table>
+	</div>
+      </div>
+    </div>
+  </body>
+  <script>
+   new Vue({
+     el: '.sample',
+     data: {
+       scrolled: false,
+       agree: false,
+       spam: false,
+       send: '',
+       formSubmit: false,
+     },
+     methods: {
+       onScroll(e) {
+	 if(e.target.scrollHeight - e.target.clientHeight - e.target.scrollTop < 10){
+	   this.scrolled = true;
+	 }
+       }
+     }
+   })
+  </script>
+</html>
